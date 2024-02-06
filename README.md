@@ -21,8 +21,8 @@ Then, install the dependencies:
 Make a [Replicate](https://replicate.com), [OpenAI](https://beta.openai.com/), and [ElevenLabs](https://elevenlabs.io) account and set your tokens:
 
 ```
-export OPENAI_API_KEY=<token>
-export ELEVENLABS_API_KEY=<eleven-token>
+export OPENAI_API_KEY=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
+export ELEVENLABS_API_KEY=174ee9a134694b7d1010d45ba069c1f5
 ```
 
 Make a new voice in Eleven and get the voice id of that voice using their [get voices](https://elevenlabs.io/docs/api-reference/voices) API, or by clicking the flask icon next to the voice in the VoiceLab tab.

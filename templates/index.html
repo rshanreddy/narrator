@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Critique</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-section {
+            background-color: #dc3545; /* Strong red */
+            color: white;
+            padding: 40px 0;
+            border-radius: 0.25rem;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .img-thumbnail {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.25rem;
+        }
+        .footer {
+            padding: 20px 0;
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Productivity Critique</a>
+    </nav>
+
+    <div class="hero-section text-center">
+        <h1>Are You Wasting Your Time?</h1>
+        <p>Get ready for a brutal honesty dose from your own personal Fletcher.</p>
+        <button id="startButton" class="btn btn-light btn-lg">Unleash Fletcher</button>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <img id="latestImage" src="" alt="Latest image" class="img-thumbnail mb-3">
+                <audio id="narratorAudio" controls class="w-100"></audio>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Productivity Critique. All rights reserved.</p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#startButton').click(function() {
+                $.get("/process-image", function(data) {
+                    // Code to update image and audio
+                });
+            });
+        });
+    </script>
+</body>
+</html>

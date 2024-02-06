@@ -25,7 +25,7 @@ def encode_image(image_path):
 
 
 def play_audio(text):
-    audio = generate(text, voice=os.environ.get("ELEVENLABS_VOICE_ID"))
+    audio = generate(text, voice="Szy1HGeSt7N9YMB4blKq")
 
     unique_id = base64.urlsafe_b64encode(os.urandom(30)).decode("utf-8").rstrip("=")
     dir_path = os.path.join("narration", unique_id)
@@ -37,45 +37,28 @@ def play_audio(text):
 
     play(audio)
 
-
-def generate_new_line(base64_image):
-    return [
-        {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": "Describe this image"},
-                {
-                    "type": "image_url",
-                    "image_url": f"data:image/jpeg;base64,{base64_image}",
-                },
-            ],
-        },
-    ]
-
-
-def analyze_image(base64_image, script):
+def analyze_image(base64_image):
     response = client.chat.completions.create(
         model="gpt-4-vision-preview",
         messages=[
             {
                 "role": "system",
                 "content": """
-                You are Sir David Attenborough. Narrate the picture of the human as if it is a nature documentary.
-                Make it snarky and funny. Don't repeat yourself. Make it short. If I do anything remotely interesting, make a big deal about it!
-                """,
+                You are a Minecraft professional. Analyze the 
+                """
             },
-        ]
-        + script
-        + generate_new_line(base64_image),
-        max_tokens=500,
+            {
+                "role": "user",
+                "content": f"data:image/jpeg;base64,{base64_image}"
+            }
+        ],
+        max_tokens=100
     )
     response_text = response.choices[0].message.content
     return response_text
 
 
 def main():
-    script = []
-
     while True:
         # path to your image
         image_path = os.path.join(os.getcwd(), "./frames/frame.jpg")
@@ -85,18 +68,16 @@ def main():
 
         # analyze posture
         print("👀 David is watching...")
-        analysis = analyze_image(base64_image, script=script)
+        analysis = analyze_image(base64_image)
 
         print("🎙️ David says:")
         print(analysis)
 
         play_audio(analysis)
 
-        script = script + [{"role": "assistant", "content": analysis}]
-
         # wait for 5 seconds
         time.sleep(5)
 
-
 if __name__ == "__main__":
     main()
+
